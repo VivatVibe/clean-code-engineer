@@ -1,5 +1,6 @@
 ---
 name: clean-code-engineer
+license: MIT
 description: Review, implement, and safely refactor maintainable code using clean-code principles, evidence-based findings, and relevant tests. Use when asked for code quality review, code smells, readability improvements, refactoring, unit tests, PR review, or maintainability.
 ---
 
