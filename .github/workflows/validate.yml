@@ -33,3 +33,7 @@ jobs:
         run: |
           npx --yes skills add VivatVibe/clean-code-engineer --list | tee skills-discovery.log
           grep -Fq "clean-code-engineer" skills-discovery.log
+      - name: Verify public Codex installation
+        run: |
+          npx --yes skills add VivatVibe/clean-code-engineer --skill clean-code-engineer --agent codex --yes
+          test -f .agents/skills/clean-code-engineer/SKILL.md
