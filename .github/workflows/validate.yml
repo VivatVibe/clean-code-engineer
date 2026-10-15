@@ -25,3 +25,11 @@ jobs:
         run: python3 scripts/validate_skill.py
       - name: Run validator regression tests
         run: python3 -m unittest discover -s tests -p "test_*.py" -v
+      - name: Set up Node.js for public installer smoke test
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify public skill discovery
+        run: |
+          npx --yes skills add VivatVibe/clean-code-engineer --list | tee skills-discovery.log
+          grep -Fq "clean-code-engineer" skills-discovery.log
