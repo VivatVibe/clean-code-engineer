@@ -1,0 +1,27 @@
+name: Validate Agent Skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate skill manifest and files
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate Agent Skill structure
+        run: python3 scripts/validate_skill.py
+      - name: Run validator regression tests
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
